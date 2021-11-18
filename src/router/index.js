@@ -301,6 +301,12 @@ export const asyncRoutes = [
           import('@/views/personnelManagement/menuManagement/index'),
         meta: { title: '菜单管理', badge: 'New' },
       },
+      {
+        path: 'dynForm',
+        name: 'dynForm',
+        component: () => import('@/views/personnelManagement/dynForm/index'),
+        meta: { title: '动态表单', badge: 'New' },
+      },
     ],
   },
   {
