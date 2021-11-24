@@ -47,12 +47,22 @@ module.exports = {
   transpileDependencies,
   devServer: {
     hot: true,
-    port: devPort,
+    port: 1024,
+    host: 'localhost',
     open: true,
     noInfo: false,
     overlay: {
       warnings: true,
       errors: true,
+    },
+    proxy: {
+      // 当我们的本地的请求 有/api的时候，就会代理我们的请求地址向另外一个服务器发出请求
+      // 这里的api 表示如果我们的请求地址有/api的时候,就出触发代理机制
+      // localhost:8888/api/abc  => 代理给另一个服务器
+      '/dyn': {
+        target: 'http://localhost:8080', // 跨域请求的地址
+        changeOrigin: true, // 只有这个值为true的情况下 才表示开启跨域
+      },
     },
     after: mockServer(),
   },

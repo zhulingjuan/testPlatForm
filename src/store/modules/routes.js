@@ -3,8 +3,10 @@
  * @description 路由拦截状态管理，目前两种模式：all模式与intelligence模式，其中partialRoutes是菜单暂未使用
  */
 import { asyncRoutes, constantRoutes } from '@/router'
-import { getRouterList } from '@/api/router'
+import { getRouterList, getRouterMenuList } from '@/api/router'
 import { convertRouter, filterAsyncRoutes } from '@/utils/handleRoutes'
+import EmptyLayout from '@/layouts/EmptyLayout'
+import { json } from 'body-parser'
 
 const state = () => ({
   routes: [],
@@ -27,11 +29,15 @@ const mutations = {
 }
 const actions = {
   async setRoutes({ commit }, permissions) {
+    let { data } = await getRouterMenuList()
+    let accessRoutes = convertRouter(data)
+    var copyasyncRoutes = [].concat(accessRoutes).concat(asyncRoutes)
     //开源版只过滤动态路由permissions，admin不再默认拥有全部权限
     const finallyAsyncRoutes = await filterAsyncRoutes(
-      [...asyncRoutes],
+      [...copyasyncRoutes],
       permissions
     )
+    console.log(JSON.stringify(copyasyncRoutes))
     commit('setRoutes', finallyAsyncRoutes)
     return finallyAsyncRoutes
   },

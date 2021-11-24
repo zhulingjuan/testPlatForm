@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import request_self from '@/utils/request_self'
 
 export function getTree(data) {
   return request({
@@ -9,8 +10,8 @@ export function getTree(data) {
 }
 
 export function doEdit(data) {
-  return request({
-    url: '/menuManagement/doEdit',
+  return request_self({
+    url: '/dyn/saveDyn',
     method: 'post',
     data,
   })

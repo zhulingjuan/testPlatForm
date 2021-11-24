@@ -1,19 +1,26 @@
 <template>
-  <el-dialog
-    :title="title"
-    :visible.sync="dialogFormVisible"
-    width="500px"
-    @close="close"
-  >
-    <el-divider content-position="left">
-      这里就不具体写了，请自行完善
-    </el-divider>
+  <el-dialog :title="titleName" :visible.sync="dialogFormVisible" width="500px">
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
       <el-form-item label="name" prop="name">
         <el-input v-model="form.name" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="路径" prop="path">
         <el-input v-model="form.path" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="vue文件路径" prop="component">
+        <el-input v-model="form.component" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="content" prop="content">
+        <el-input v-model="form.content" autocomplete="off"></el-input>
+      </el-form-item>
+      <!-- <el-form-item label="标题" prop="meta.title">
+        <el-input v-model="form.meta.title" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="icon" prop="meta.icon">
+        <el-input v-model="form.meta.icon" autocomplete="off"></el-input>
+      </el-form-item> -->
+      <el-form-item v-if="false" label="parentId" prop="parentId">
+        <el-input v-model="form.parentId" autocomplete="off"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -34,7 +41,7 @@
         rules: {
           id: [{ required: true, trigger: 'blur', message: '请输入路径' }],
         },
-        title: '',
+        titleName: '',
         dialogFormVisible: false,
       }
     },
@@ -42,9 +49,9 @@
     methods: {
       showEdit(row) {
         if (!row) {
-          this.title = '添加'
+          this.titleName = '添加'
         } else {
-          this.title = '编辑'
+          this.titleName = '编辑'
           this.form = Object.assign({}, row)
         }
         this.dialogFormVisible = true
