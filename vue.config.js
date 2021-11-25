@@ -63,6 +63,15 @@ module.exports = {
         target: 'http://localhost:8080', // 跨域请求的地址
         changeOrigin: true, // 只有这个值为true的情况下 才表示开启跨域
       },
+      '/api': {
+        target: 'http://localhost:8080', // 跨域请求的地址
+        changeOrigin: true, // 只有这个值为true的情况下 才表示开启跨域
+        pathRewrite: {
+          '^/api': '/',
+          //pathRewrite: {'^/api': '/'} 重写之后url为 http://192.168.1.16:8085/xxxx
+          //pathRewrite: {'^/api': '/api'} 重写之后url为 http://192.168.1.16:8085/api/xxxx
+        },
+      },
     },
     after: mockServer(),
   },

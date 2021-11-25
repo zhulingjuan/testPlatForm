@@ -43,24 +43,24 @@
           ></el-table-column>
           <el-table-column
             show-overflow-tooltip
-            prop="meta.title"
+            prop="title"
             label="标题"
           ></el-table-column>
           <el-table-column show-overflow-tooltip label="图标">
             <template #default="{ row }">
-              <span v-if="row.meta">
-                <vab-icon
-                  v-if="row.meta.icon"
-                  :icon="['fas', row.meta.icon]"
-                ></vab-icon>
-              </span>
+              <vab-icon v-if="row.icon" :icon="['fas', row.icon]"></vab-icon>
             </template>
           </el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="proxyPath"
+            label="proxyPath"
+          ></el-table-column>
           <el-table-column
             v-if="false"
             show-overflow-tooltip
             prop="content"
-            label="标题"
+            label="内容"
           ></el-table-column>
           <el-table-column show-overflow-tooltip label="操作" width="200">
             <template #default="{ row }">
@@ -69,7 +69,7 @@
               </el-button>
               <el-button type="text" @click="handleDelete(row)">删除</el-button>
               <el-button
-                v-if="row.id"
+                v-if="row.children"
                 type="text"
                 @click="handleEdit(row, 'add')"
               >

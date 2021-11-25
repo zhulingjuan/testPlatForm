@@ -13,12 +13,15 @@
       <el-form-item label="content" prop="content">
         <el-input v-model="form.content" autocomplete="off"></el-input>
       </el-form-item>
-      <!-- <el-form-item label="标题" prop="meta.title">
-        <el-input v-model="form.meta.title" autocomplete="off"></el-input>
+      <el-form-item label="标题" prop="title">
+        <el-input v-model="form.title" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="icon" prop="meta.icon">
-        <el-input v-model="form.meta.icon" autocomplete="off"></el-input>
-      </el-form-item> -->
+      <el-form-item label="icon" prop="icon">
+        <el-input v-model="form.icon" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="proxyPath" prop="proxyPath">
+        <el-input v-model="form.proxyPath" autocomplete="off"></el-input>
+      </el-form-item>
       <el-form-item v-if="false" label="parentId" prop="parentId">
         <el-input v-model="form.parentId" autocomplete="off"></el-input>
       </el-form-item>
@@ -64,6 +67,7 @@
       save() {
         this.$refs['form'].validate(async (valid) => {
           if (valid) {
+            console.log(JSON.stringify(this.form))
             const { msg } = await doEdit(this.form)
             this.$baseMessage(msg, 'success')
             this.$emit('fetch-data')

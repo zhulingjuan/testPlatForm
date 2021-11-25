@@ -15,3 +15,19 @@ export function getRouterMenuList(data) {
     data,
   })
 }
+
+export function getRouterMenuContent(data) {
+  return request({
+    url: '/dyn/getDynMenuContent',
+    method: 'post',
+    data,
+  })
+}
+
+export function submitRequest(URL, data) {
+  return request({
+    url: URL,
+    method: 'post',
+    data,
+  })
+}
