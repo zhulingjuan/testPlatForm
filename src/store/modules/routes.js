@@ -31,7 +31,7 @@ const actions = {
   async setRoutes({ commit }, permissions) {
     let { data } = await getRouterMenuList()
     let accessRoutes = convertRouter(data)
-    var copyasyncRoutes = [].concat(accessRoutes).concat(asyncRoutes)
+    var copyasyncRoutes = [].concat(asyncRoutes).concat(accessRoutes)
     //开源版只过滤动态路由permissions，admin不再默认拥有全部权限
     const finallyAsyncRoutes = await filterAsyncRoutes(
       [...copyasyncRoutes],
