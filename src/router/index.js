@@ -282,7 +282,15 @@ export const asyncRoutes = [
         name: 'MenuManagement',
         component: () =>
           import('@/views/personnelManagement/menuManagement/index'),
-        meta: { title: '菜单管理', badge: 'New' },
+        meta: { title: '菜单管理' },
+      },
+      {
+        path: 'https://jakhuang.github.io/form-generator/#/',
+        name: 'ExternalLink',
+        meta: {
+          title: '外链',
+          target: '_blank',
+        },
       },
     ],
   },
