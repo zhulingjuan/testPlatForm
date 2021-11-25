@@ -7,7 +7,6 @@
 <script>
   import Parser from './components/parser/Parser.vue'
   import { getRouterMenuContent, submitRequest } from '@/api/router'
-  import axios from 'axios'
 
   // 若parser是通过安装npm方式集成到项目中的，使用此行引入
   // import Parser from 'form-gen-parser'
